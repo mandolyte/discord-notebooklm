@@ -32,4 +32,44 @@ The script creates a log file named `export.log` and will concatenate all the ex
 
 ### Regular Channels
 
-TBS
+For regular channels it isn't required to fetch each message individually. The `use-cases` folder is a regular channel. The channel id is required and all the messages will be exported in one command. See script for details.
+
+## Appendix A - List of channel and IDs
+
+Below shows the command and the output.
+
+```
+$ ./DiscordChatExporter.Cli channels --guild 1124402182171672732 --token <t>
+
+1286074990407450777 | student-hub
+1182376885280329829 | Mods / system-updates
+1167885619989590046 | Read-Only / 🏁-start-here
+1124403332262412368 | Read-Only / 📕-guidelines
+1182376564525113484 | Read-Only / 📣-announcements
+1294057633334165596 | Read-Only / 🚥-status
+1173364829810085931 | Discussions / 🐞-bugs
+1124438716325306419 | Discussions / 👋🏽-intros
+1124402182909857966 | Discussions / 💬-general
+1124403655819415592 | Discussions / 📇-use-cases
+1173362666266443876 | Discussions / 📋-feature-requests
+1280639145785425974 | Discussions / educator-ambassadors
+$ 
+```
+
+The discord server ID ("guild") may easily be found by inspecting the URL while using the web version of discord. The above for example, came from: 
+
+```
+https://discord.com/channels/1124402182171672732
+```
+
+## Appendix B - Links and References
+
+This project relies on the installation of the Discord Chat Exporter project. Find this at:
+https://github.com/Tyrrrz/DiscordChatExporter/
+
+The documentation is at:
+https://github.com/Tyrrrz/DiscordChatExporter/blob/2.43.3/.docs/Using-the-CLI.md
+
+The documentation also has the method for which to obtain your token needed to execute the API commands.
+
+
