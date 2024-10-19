@@ -34,7 +34,7 @@ The script creates a log file named `export.log` and will concatenate all the ex
 
 For regular channels it isn't required to fetch each message individually. The `use-cases` folder is a regular channel. The channel id is required and all the messages will be exported in one command. See script for details.
 
-## Appendix A - List of channel and IDs
+## Appendix A - List of Server Channels and IDs
 
 Below shows the command and the output.
 
