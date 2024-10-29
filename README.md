@@ -1,6 +1,13 @@
 # README
 
-## IDEAS
+## Overview
+
+This project extracts the "active" posts/threads from the Discord server for Google's NotebookLM project. It utilizes the tooling described below in Appendix B. This project consists of scripts use the DiscordChatExporter tool and manipulate the output.
+
+Feel free to ask questions or raise issues at:
+https://github.com/mandolyte/discord-notebooklm/issues
+
+## Wishlist
 
 - add a counter to show progress
     
@@ -65,7 +72,6 @@ https://discord.com/channels/1124402182171672732
 ## Appendix B - Links and References
 
 This project relies on the installation of the Discord Chat Exporter project. Find this at:
-https://github.com/Tyrrrz/DiscordChatExporter/
 
 The documentation is at:
 https://github.com/Tyrrrz/DiscordChatExporter/blob/2.43.3/.docs/Using-the-CLI.md
