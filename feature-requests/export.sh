@@ -12,6 +12,8 @@ TOKEN=`cat $HOME/.discord`
 FOLDER=./data
 PWD=`pwd`
 CHANNEL=`basename $PWD`
+DATE=`date +%Y-%m-%d`
+OUTPUT=$DATE--$CHANNEL.txt
 
 echo Working channel $CHANNEL
 
@@ -38,6 +40,6 @@ done
 
 # combine them all
 cd $FOLDER
-cat *.txt > Active_${CHANNEL}.txt
+cat *.txt > $OUTPUT
 
 echo Done `date`

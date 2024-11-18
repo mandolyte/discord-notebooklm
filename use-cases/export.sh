@@ -13,6 +13,8 @@ FOLDER=./data
 PWD=`pwd`
 CHANNEL=`basename $PWD`
 CHANNELID=1124403655819415592
+DATE=`date +%Y-%m-%d`
+OUTPUT=$DATE--$CHANNEL.txt
 
 echo Working channel $CHANNEL with ID $CHANNELID
 
@@ -24,7 +26,7 @@ echo Start `date`
 $EXEC export \
     --channel $CHANNELID \
     --token $TOKEN \
-    --output $FOLDER/$CHANNEL.txt \
+    --output $FOLDER/$OUTPUT \
     --format PlainText \
     > export.log 2>&1 
 
