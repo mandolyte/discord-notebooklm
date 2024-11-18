@@ -44,4 +44,7 @@ done
 cd $FOLDER
 cat *.txt > $OUTPUT
 
+# to ensure that the input file is fresh, delete it after using
+rm input.txt thread_numbers.txt
+
 echo Done `date`
