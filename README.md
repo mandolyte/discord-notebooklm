@@ -19,7 +19,11 @@ There are folders which are named after the Discord channel. In each are data an
 
 ### Forum Style Channels
 
-Since each post in a forum is a thread, I have to obtain all the thread numbers for the forum and export them individually. Here are the steps:
+Since each post in a forum is a thread, I have to obtain all the thread numbers for the forum and export them individually. 
+
+*For NLM, there are just two forum style channels that I am doing: Bugs and Feature Requests. So the following only applies to these two channels.*
+
+Here are the steps:
 
 First, use the `get_active_threads.sh` script to obtain the active posts from all the channels. The output for this will be `input.txt`. 
 
