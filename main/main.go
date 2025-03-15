@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"sync"
 )
 
 func readFileLines(filePath string) ([]string, error) {
@@ -29,16 +30,43 @@ func readFileLines(filePath string) ([]string, error) {
 	return lines, nil
 }
 
-func findLineEndingWith(lines []string, suffix string) string {
-	for _, line := range lines {
-		if strings.HasSuffix(line, suffix) {
-			return line
+func findLineEndingWith(lines []string, suffix string) []string {
+	var asection []string
+	for i := 0; i < len(lines); i++ {
+		// fmt.Println(lines[i])
+		if strings.HasSuffix(lines[i], suffix) {
+			for j := i + 1; j < len(lines); j++ {
+				if strings.HasPrefix(lines[j], " *") {
+					asection = append(asection, lines[j])
+				} else {
+					break
+				}
+			}
 		}
 	}
-	return "" // Return an empty string if no matching line is found.
+
+	return asection
+}
+
+func writeLinesToFile(lines []string, filePath string) error {
+	file, err := os.Create(filePath) // Create or overwrite the file
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	for _, line := range lines {
+		_, err := file.WriteString(line + "\n") // Append linefeed and write
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 func main() {
+	fmt.Println("Get active threads on Discord server")
 	cmd := exec.Command("sh", "get_active_threads.sh")
 	output, err := cmd.Output()
 	if err != nil {
@@ -62,11 +90,52 @@ func main() {
 	// for _, line := range lines {
 	// 	fmt.Println(line)
 	// }
-	lookFor := "-intros"
+	lookFor := "-bugs"
+	fmt.Println("Look for bugs section")
 	amatch := findLineEndingWith(lines, lookFor)
-	if amatch != "" {
-		fmt.Println(amatch)
+	if len(amatch) != 0 {
+		writeLinesToFile(amatch, "bugs/input.txt")
 	} else {
 		fmt.Printf("Not found: %v\n", lookFor)
 	}
+
+	lookFor = "-feature-requests"
+	fmt.Println("Look for feature-requests section")
+	amatch = findLineEndingWith(lines, lookFor)
+	if len(amatch) != 0 {
+		writeLinesToFile(amatch, "feature-requests/input.txt")
+	} else {
+		fmt.Printf("Not found: %v\n", lookFor)
+	}
+
+	//
+	// With the data inputs now ready we can run the extract scripts
+	//
+	fmt.Println("Start Discord server channel extracts")
+	var wg sync.WaitGroup // Create a WaitGroup
+
+	wg.Add(2) // Add 2 workers to the WaitGroup
+
+	go worker(1, &wg, "runBugs.sh")            // Start worker 1 in a goroutine
+	go worker(2, &wg, "runFeatureRequests.sh") // Start worker 2 in a goroutine
+
+	wg.Wait() // Wait for all workers to finish
+
+	fmt.Println("All workers completed.")
+
+}
+
+func worker(id int, wg *sync.WaitGroup, script string) {
+	defer wg.Done() // Signal completion when the worker finishes
+	fmt.Printf("Worker %d started: %v\n", id, script)
+
+	cmdBugs := exec.Command("sh", script)
+	output, err := cmdBugs.Output()
+	if err != nil {
+		log.Fatalln("Error:", err)
+		return
+	}
+	fmt.Println(string(output))
+	fmt.Printf("Worker %d finished: %v\n", id, script)
+
 }
