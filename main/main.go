@@ -134,6 +134,8 @@ func main() {
 }
 
 func worker(id int, wg *sync.WaitGroup, script string) {
+	start := time.Now() // Record the start time
+
 	defer wg.Done() // Signal completion when the worker finishes
 	fmt.Printf("Worker %d started: %v\n", id, script)
 
@@ -143,7 +145,8 @@ func worker(id int, wg *sync.WaitGroup, script string) {
 		log.Fatalln("Error:", err)
 		return
 	}
-	fmt.Println(string(output))
-	fmt.Printf("Worker %d finished: %v\n", id, script)
+	elapsed := time.Since(start) // Calculate the elapsed time
+	fmt.Printf("Worker %d finished: %v in %v\n", id, script, elapsed)
+	fmt.Printf("... output:\n%v\n", string(output))
 
 }

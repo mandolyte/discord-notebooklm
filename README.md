@@ -21,6 +21,43 @@ There are folders which are named after the Discord channel. In each are data an
 
 As of 2025-03-15, a Go language script has been written to automate the detailed steps below. It is located in the folder `main`. Run the script `sh runAll.sh` to use the automation.
 
+Example execution will be similar to the below:
+
+```
+$ sh runAll.sh 
+Extractions Started at Sat Mar 15 12:53:45 PM EDT 2025
+Get active threads on Discord server
+Start at Sat Mar 15 12:53:45 PM EDT 2025
+Done at Sat Mar 15 12:53:56 PM EDT 2025
+
+Look for bugs section
+Look for feature-requests section
+Start Discord server channel extracts
+Worker 5 started: runUseCases.sh
+Worker 2 started: runFeatureRequests.sh
+Worker 3 started: runGeneral.sh
+Worker 1 started: runBugs.sh
+Worker 4 started: runIntros.sh
+
+Worker 1 finished: runBugs.sh
+Working channel feature-requests
+
+Worker 2 finished: runFeatureRequests.sh
+Working channel use-cases with ID 1124403655819415592
+
+Worker 5 finished: runUseCases.sh
+Working channel intros with ID 1124438716325306419
+
+Worker 4 finished: runIntros.sh
+Working channel general with ID 1124402182909857966
+
+Worker 3 finished: runGeneral.sh
+All workers completed.
+Extraction took 1h16m54.500351854s to run
+Extractions Completed at Sat Mar 15 02:10:39 PM EDT 2025
+$ 
+```
+
 ### Forum Style Channels
 
 Since each post in a forum is a thread, I have to obtain all the thread numbers for the forum and export them individually. 
