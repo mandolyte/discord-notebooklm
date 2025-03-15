@@ -17,6 +17,10 @@ There are folders which are named after the Discord channel. In each are data an
 
 ## Process 
 
+### Automation
+
+As of 2025-03-15, a Go language script has been written to automate the detailed steps below. It is located in the folder `main`. Run the script `sh runAll.sh` to use the automation.
+
 ### Forum Style Channels
 
 Since each post in a forum is a thread, I have to obtain all the thread numbers for the forum and export them individually. 

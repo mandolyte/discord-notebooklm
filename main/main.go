@@ -8,6 +8,7 @@ import (
 	"os/exec"
 	"strings"
 	"sync"
+	"time"
 )
 
 func readFileLines(filePath string) ([]string, error) {
@@ -66,6 +67,7 @@ func writeLinesToFile(lines []string, filePath string) error {
 }
 
 func main() {
+	start := time.Now() // Record the start time
 	fmt.Println("Get active threads on Discord server")
 	cmd := exec.Command("sh", "get_active_threads.sh")
 	output, err := cmd.Output()
@@ -114,14 +116,20 @@ func main() {
 	fmt.Println("Start Discord server channel extracts")
 	var wg sync.WaitGroup // Create a WaitGroup
 
-	wg.Add(2) // Add 2 workers to the WaitGroup
+	wg.Add(5) // Add 5 workers to the WaitGroup
 
 	go worker(1, &wg, "runBugs.sh")            // Start worker 1 in a goroutine
 	go worker(2, &wg, "runFeatureRequests.sh") // Start worker 2 in a goroutine
+	go worker(3, &wg, "runGeneral.sh")         // Start worker 3 in a goroutine
+	go worker(4, &wg, "runIntros.sh")          // Start worker 4 in a goroutine
+	go worker(5, &wg, "runUseCases.sh")        // Start worker 5 in a goroutine
 
 	wg.Wait() // Wait for all workers to finish
 
 	fmt.Println("All workers completed.")
+
+	elapsed := time.Since(start) // Calculate the elapsed time
+	fmt.Printf("Extraction took %s to run\n", elapsed)
 
 }
 
