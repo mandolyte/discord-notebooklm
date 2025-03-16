@@ -24,38 +24,49 @@ As of 2025-03-15, a Go language script has been written to automate the detailed
 Example execution will be similar to the below:
 
 ```
-$ sh runAll.sh 
-Extractions Started at Sat Mar 15 12:53:45 PM EDT 2025
+$ sh runAll.sh
+Extractions Started at Sat Mar 15 08:42:30 PM EDT 2025
 Get active threads on Discord server
-Start at Sat Mar 15 12:53:45 PM EDT 2025
-Done at Sat Mar 15 12:53:56 PM EDT 2025
+Start at Sat Mar 15 08:42:31 PM EDT 2025
+Done at Sat Mar 15 08:42:42 PM EDT 2025
 
 Look for bugs section
 Look for feature-requests section
 Start Discord server channel extracts
 Worker 5 started: runUseCases.sh
-Worker 2 started: runFeatureRequests.sh
 Worker 3 started: runGeneral.sh
 Worker 1 started: runBugs.sh
+Worker 2 started: runFeatureRequests.sh
 Worker 4 started: runIntros.sh
+Worker 1 finished: runBugs.sh in 20m14.218398936s
+... output:
 
-Worker 1 finished: runBugs.sh
-Working channel feature-requests
+Worker 2 finished: runFeatureRequests.sh in 31m37.858878637s
+... output:
 
-Worker 2 finished: runFeatureRequests.sh
+Worker 5 finished: runUseCases.sh in 46m40.676076769s
+... output:
 Working channel use-cases with ID 1124403655819415592
+Start Sat Mar 15 08:42:42 PM EDT 2025
+Done Sat Mar 15 09:29:22 PM EDT 2025
 
-Worker 5 finished: runUseCases.sh
+Worker 4 finished: runIntros.sh in 1h12m23.175219839s
+... output:
 Working channel intros with ID 1124438716325306419
+Start Sat Mar 15 08:42:42 PM EDT 2025
+Done Sat Mar 15 09:55:05 PM EDT 2025
 
-Worker 4 finished: runIntros.sh
+Worker 3 finished: runGeneral.sh in 1h19m1.404259296s
+... output:
 Working channel general with ID 1124402182909857966
+Start Sat Mar 15 08:42:42 PM EDT 2025
+Done Sat Mar 15 10:01:43 PM EDT 2025
 
-Worker 3 finished: runGeneral.sh
 All workers completed.
-Extraction took 1h16m54.500351854s to run
-Extractions Completed at Sat Mar 15 02:10:39 PM EDT 2025
+Extraction took 1h19m12.117518837s to run
+Extractions Completed at Sat Mar 15 10:01:43 PM EDT 2025
 $ 
+
 ```
 
 ### Forum Style Channels
