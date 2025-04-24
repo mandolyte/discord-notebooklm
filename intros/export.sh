@@ -5,7 +5,7 @@
 ### where each post is a thread.
 ###
 
-BINDIR=$HOME/Downloads/zz
+BINDIR=$HOME/bin/DiscordChatExporter
 CLI=DiscordChatExporter.Cli
 EXEC=$BINDIR/$CLI
 TOKEN=`cat $HOME/.discord`
